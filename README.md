@@ -29,7 +29,7 @@ Per la decomposizione delle serie storiche
 ##########################################
 # 1.Pulizia dei dati
 ##########################################
-1.1 dati meteo
+# 1.1 dati meteo
 ---------------------
 I dati relativi alle temperature, all’unidità ed alle precipitazioni sono scaricabili sotto forma di opendata  dal sito della regione lombardia, 
 quindi è necessario filtrarli per individuare quelli di Milano.
