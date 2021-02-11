@@ -3,29 +3,36 @@
 ################################
 per eseguire l’analisi abbiamo bisogno dei moduli pandas e numpy, per non creare conflitti con altre versioni di Python ed altri moduli installati installo 
 una virtualenv per isolare il nostro ambiente; se virtualenv non è presente installarla prima:
- >sudo apt install python3-virtualenv
- 
+``` markdown
+ sudo apt install python3-virtualenv
+```
 procedere con la creazione dell’ambiente:
- >python3 -m venv qaria
- 
+``` markdown
+ python3 -m venv qaria
+```
 nella cartella dove abbiamo creato la venv ora abbiamo una sottocartella che conterrà tutto l’ambiente che andremo a creare e lo script di attivazione della stessa; 
 attiviamola:
- >. qaria/bin/activate
- 
+``` markdown
+ . qaria/bin/activate
+ ```
 il nostro ambiente è attivo e la linea di comando la mostra:
 (qaria) silvio@LAPTOP-1E60R3SA:/mnt/home/py$
 
 da questo momento in poi tutto quello che installiamo sarà all’interno di questo ambiente.
 Procediamo con l’installazione di pandas
- >pip install pandas
+``` markdown
+ pip install pandas
+```
  
 questa si porterà con se l’installazione anche di numpy.
 Per i grafici
- >pip install matplotlib
- 
+``` markdown
+ pip install matplotlib
+ ```
 Per la decomposizione delle serie storiche
- >pip install statsmodels
- 
+``` markdown
+ pip install statsmodels
+ ```
 ##########################################
 # 1.Pulizia dei dati
 ##########################################
@@ -39,21 +46,26 @@ I file sono di grandi dimensioni quindi per il momento eviteremo caricamento su 
 o lavorazione tramite strumenti con interfaccia grafica. 
 Saranni lavorati con gli strumenti presenti in un terminale Linux.
 i) anagrafica stazioni di rilevamento
- ->awk '/Umidit/ || /Temperatura/ || /Precipitazione/' Stazioni_Meteorologiche.csv | awk '/,Milano/' > stazioni_meteo_MI_2020.csv
+``` markdown
+ awk '/Umidit/ || /Temperatura/ || /Precipitazione/' Stazioni_Meteorologiche.csv | awk '/,Milano/' > stazioni_meteo_MI_2020.csv
+```
 oppure singolarmente
- ->cat Stazioni_Meteorologiche.csv | sed -n '/,Precipitazione,mm/p' | sed -n '/,Milano/p' > stazioni_precipitazioni_MI.csv
+``` markdown
+ cat Stazioni_Meteorologiche.csv | sed -n '/,Precipitazione,mm/p' | sed -n '/,Milano/p' > stazioni_precipitazioni_MI.csv
+ ```
  
 ii) filtrare i dati delle stazioni di rilevamento sulla base degli idSensore filtrati per Milano.
 Gli idSensore di Milano sono:
-	a) temperature: 8162,5909,2001,5920,5897,5911
-	b) umidità: 6179,6597,6174,2002,6185
-	c) precipitazioni: 	14121,9341,8149,5908,19373,2006
+	* temperature: 8162,5909,2001,5920,5897,5911
+	* umidità: 6179,6597,6174,2002,6185
+	* precipitazioni: 	14121,9341,8149,5908,19373,2006
 	
 Con gli identificativi delle stazioni di Milano andiamo a filtrare i dati relativi al 2020
- ->cat meteo_2020.csv | sed -n '/^\(8162\|5909\|2001\|5920\|5897\|5911\)/p' > meteo/2020/temperature_2020_mi.csv
- ->cat meteo_2020.csv | sed -n '/^\(6179\|6597\|6174\|2002\|6185\)/p' > meteo/2020/umidita_2020_mi.csv
- ->cat meteo_2020.csv | sed -n '/^\(14121\|9341\|8149\|5908\|19373\|2006\)/p' > meteo/2020/precipitazioni_2020_mi.csv
- 
+``` markdown
+ cat meteo_2020.csv | sed -n '/^\(8162\|5909\|2001\|5920\|5897\|5911\)/p' > meteo/2020/temperature_2020_mi.csv
+ cat meteo_2020.csv | sed -n '/^\(6179\|6597\|6174\|2002\|6185\)/p' > meteo/2020/umidita_2020_mi.csv
+ cat meteo_2020.csv | sed -n '/^\(14121\|9341\|8149\|5908\|19373\|2006\)/p' > meteo/2020/precipitazioni_2020_mi.csv
+ ```
 Questa operazione andrà ripetuta per i dati del 2019 e 2018.
 
 
