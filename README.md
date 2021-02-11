@@ -1,6 +1,5 @@
-################################
-## 0.Preparazione ambiente    ##
-################################
+## 0.Preparazione ambiente
+
 per eseguire l’analisi abbiamo bisogno dei moduli pandas e numpy, per non creare conflitti con altre versioni di Python ed altri moduli installati installo 
 una virtualenv per isolare il nostro ambiente; se virtualenv non è presente installarla prima:
 ``` markdown
@@ -23,7 +22,6 @@ Procediamo con l’installazione di pandas
 ``` markdown
  pip install pandas
 ```
- 
 questa si porterà con se l’installazione anche di numpy.
 Per i grafici
 ``` markdown
@@ -33,11 +31,10 @@ Per la decomposizione delle serie storiche
 ``` markdown
  pip install statsmodels
  ```
-##########################################
-# 1.Pulizia dei dati
-##########################################
+
+## 1.Pulizia dei dati
+
 # 1.1 dati meteo
----------------------
 I dati relativi alle temperature, all’unidità ed alle precipitazioni sono scaricabili sotto forma di opendata  dal sito della regione lombardia, 
 quindi è necessario filtrarli per individuare quelli di Milano.
 Partendo dall’anagrafica delle stazioni (https://www.dati.lombardia.it/Ambiente/Stazioni-Meteorologiche/nf78-nj6b) 
@@ -69,9 +66,7 @@ Con gli identificativi delle stazioni di Milano andiamo a filtrare i dati relati
 Questa operazione andrà ripetuta per i dati del 2019 e 2018.
 
 
-######################################
-Appendice. RISORSE WEB
-######################################
+##Appendice. RISORSE WEB
 dati meteo
 - https://www.dati.lombardia.it/Ambiente/Dati-sensori-meteo-2020/erjn-istm
 - https://www.dati.lombardia.it/Ambiente/Dati-sensori-meteo-2019/wrhf-6ztd
