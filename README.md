@@ -61,7 +61,7 @@ Questa operazione andrà ripetuta per i dati del 2019 e 2018.
 Appendice. RISORSE WEB
 ######################################
 dati meteo
-https://www.dati.lombardia.it/Ambiente/Dati-sensori-meteo-2020/erjn-istm
-https://www.dati.lombardia.it/Ambiente/Dati-sensori-meteo-2019/wrhf-6ztd
-https://www.dati.lombardia.it/Ambiente/Dati-sensori-meteo-2018/sfbe-yqe8
-https://www.dati.lombardia.it/Ambiente/Dati-sensori-meteo-2017/vx6g-atiu
+- https://www.dati.lombardia.it/Ambiente/Dati-sensori-meteo-2020/erjn-istm
+- https://www.dati.lombardia.it/Ambiente/Dati-sensori-meteo-2019/wrhf-6ztd
+- https://www.dati.lombardia.it/Ambiente/Dati-sensori-meteo-2018/sfbe-yqe8
+- https://www.dati.lombardia.it/Ambiente/Dati-sensori-meteo-2017/vx6g-atiu
