@@ -39,9 +39,9 @@ I file sono di grandi dimensioni quindi per il momento eviteremo caricamento su 
 o lavorazione tramite strumenti con interfaccia grafica. 
 Saranni lavorati con gli strumenti presenti in un terminale Linux.
 i) anagrafica stazioni di rilevamento
- >awk '/Umidit/ || /Temperatura/ || /Precipitazione/' Stazioni_Meteorologiche.csv | awk '/,Milano/' > stazioni_meteo_MI_2020.csv
+ ->awk '/Umidit/ || /Temperatura/ || /Precipitazione/' Stazioni_Meteorologiche.csv | awk '/,Milano/' > stazioni_meteo_MI_2020.csv
 oppure singolarmente
- >cat Stazioni_Meteorologiche.csv | sed -n '/,Precipitazione,mm/p' | sed -n '/,Milano/p' > stazioni_precipitazioni_MI.csv
+ ->cat Stazioni_Meteorologiche.csv | sed -n '/,Precipitazione,mm/p' | sed -n '/,Milano/p' > stazioni_precipitazioni_MI.csv
  
 ii) filtrare i dati delle stazioni di rilevamento sulla base degli idSensore filtrati per Milano.
 Gli idSensore di Milano sono:
