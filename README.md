@@ -53,9 +53,9 @@ oppure singolarmente
  
 ii) filtrare i dati delle stazioni di rilevamento sulla base degli idSensore filtrati per Milano.
 Gli idSensore di Milano sono:
-	* temperature: 8162,5909,2001,5920,5897,5911
-	* umidità: 6179,6597,6174,2002,6185
-	* precipitazioni: 	14121,9341,8149,5908,19373,2006
+* temperature: 8162,5909,2001,5920,5897,5911
+* umidità: 6179,6597,6174,2002,6185
+* precipitazioni: 	14121,9341,8149,5908,19373,2006
 	
 Con gli identificativi delle stazioni di Milano andiamo a filtrare i dati relativi al 2020
 ``` markdown
