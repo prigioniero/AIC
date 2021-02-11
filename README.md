@@ -50,9 +50,9 @@ Gli idSensore di Milano sono:
 	c) precipitazioni: 	14121,9341,8149,5908,19373,2006
 	
 Con gli identificativi delle stazioni di Milano andiamo a filtrare i dati relativi al 2020
- >cat meteo_2020.csv | sed -n '/^\(8162\|5909\|2001\|5920\|5897\|5911\)/p' > meteo/2020/temperature_2020_mi.csv
- >cat meteo_2020.csv | sed -n '/^\(6179\|6597\|6174\|2002\|6185\)/p' > meteo/2020/umidita_2020_mi.csv
- >cat meteo_2020.csv | sed -n '/^\(14121\|9341\|8149\|5908\|19373\|2006\)/p' > meteo/2020/precipitazioni_2020_mi.csv
+ ->cat meteo_2020.csv | sed -n '/^\(8162\|5909\|2001\|5920\|5897\|5911\)/p' > meteo/2020/temperature_2020_mi.csv
+ ->cat meteo_2020.csv | sed -n '/^\(6179\|6597\|6174\|2002\|6185\)/p' > meteo/2020/umidita_2020_mi.csv
+ ->cat meteo_2020.csv | sed -n '/^\(14121\|9341\|8149\|5908\|19373\|2006\)/p' > meteo/2020/precipitazioni_2020_mi.csv
  
 Questa operazione andrà ripetuta per i dati del 2019 e 2018.
 
