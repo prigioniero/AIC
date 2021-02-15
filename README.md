@@ -73,7 +73,24 @@ Con gli identificativi delle stazioni di Milano andiamo a filtrare i dati relati
 Questa operazione andrà ripetuta per i dati del 2019 e 2018.
 
 # 1.2 Script data_clean_cl.py
-Lo script si esegue nell'ambiente creato da (qaria) di cui abbiamo il file di requirement nel repository; questo accetta come parametri di ingresso
+Lo script si esegue nell'ambiente virtuale (qaria) di cui abbiamo il file di requirement nel repository; questo accetta come parametri di ingresso
+``` console
+usage: data_clean_cl.py [-h] --files_meteo FILES_METEO --evento
+                        {umidita,temperature,precipitazioni} --genera {0,1}
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --files_meteo FILES_METEO
+                        Inserire lista separata da virgola di
+                        nome_file_meteo:anno_file. Il file dei dati di tutta
+                        la regione
+  --evento {umidita,temperature,precipitazioni}
+                        eventi meteo da produrre
+  --genera {0,1}        se devo generare il file evento da quello al parametro
+                        --files_meteo[1], se ho gia' prodotto i file[0]
+```
+Tutte le operazioni di pulizia e filtraggio dei dati che abbiamo spiegato al punto precedente le abbiamo implementate nello script, chiamando la linea di comando linux con il modulo subprocess di python e reindirizzato l'output verso file. Con l'opzione ```console --genera 1 ``` andiamo ad eseguire questo lavoro; qualora avessimo già prodotto i file per l'evento meteo in lavorazione possiamo fornire ```console --genera 1 ```.
+Nel Repo abbiamo caricato dei file evento già prodotto.
 
 ## Appendice. RISORSE WEB
 dati meteo
