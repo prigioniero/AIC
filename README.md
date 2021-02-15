@@ -90,7 +90,7 @@ optional arguments:
                         --files_meteo[1], se ho gia' prodotto i file[0]
 ```
 Tutte le operazioni di pulizia e filtraggio dei dati che abbiamo spiegato al punto precedente le abbiamo implementate nello script, chiamando la linea di comando linux con il modulo subprocess di python e reindirizzato l'output verso file. Con l'opzione ```console --genera 1 ``` andiamo ad eseguire questo lavoro; qualora avessimo già prodotto i file per l'evento meteo in lavorazione possiamo fornire ```console --genera 1 ```.
-Nel Repo abbiamo caricato dei file evento già prodotti, spacchettare #### **`temperature.zip e umidita.zip`** e posizionare i file nella stessa cartella dello script.
+Nel Repo abbiamo caricato dei file evento già prodotti, spacchettare **`temperature.zip e umidita.zip`** e posizionare i file nella stessa cartella dello script.
 
 ## Appendice. RISORSE WEB
 dati meteo
