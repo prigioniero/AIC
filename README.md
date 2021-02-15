@@ -30,7 +30,14 @@ Per i grafici
 Per la decomposizione delle serie storiche
 ``` markdown
  pip install statsmodels
- ```
+```
+
+# 0.1 Istallazione ambiente dal file requirements.qaria.txt
+Nel repository è presente il file requirements.qaria.txt da cui è possibile ricreare la virtualenv, con il comando:
+``` markdown
+ pip install -r requirements.qaria.txt
+```
+
 
 ## 1.Pulizia dei dati
 
