@@ -65,6 +65,8 @@ Con gli identificativi delle stazioni di Milano andiamo a filtrare i dati relati
  ```
 Questa operazione andrà ripetuta per i dati del 2019 e 2018.
 
+# 1.2 Script data_clean_cl.py
+Lo script si esegue nell'ambiente creato da (qaria) di cui abbiamo il file di requirement nel repository; questo accetta come parametri di ingresso
 
 ## Appendice. RISORSE WEB
 dati meteo
