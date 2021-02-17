@@ -40,6 +40,22 @@ Nel repository è presente il file requirements.qaria.txt da cui è possibile ri
 
 
 ## 1.Pulizia dei dati
+# 1.0 Pulizia dati regionali della qualità dell'aria
+Il file delle stazioni presentano il nome esteso dell'inquinante, sostituisco il nome con la sigla:
+- 'Biossido di Azoto':'NO2'
+- 'Biossido di Zolfo': 'SO2'
+- 'PM10 (SM2005)':'PM10'
+- 'Particelle sospese PM2.5':'PM25'
+``` console
+ > sed -i 's/Biossido di Azoto/NO2/g' stazioni_qaria_lombardia.csv
+ > sed -i 's/Biossido di Zolfo/SO2/g' stazioni_qaria_lombardia.csv
+ > sed -i 's/PM10 (SM2005)/PM10/g' stazioni_qaria_lombardia.csv
+ > sed -i 's/Particelle sospese PM2.5/PM25/g' stazioni_qaria_lombardia.csv
+```
+Ed in fine creo il file csv delle stazioni della regione degli inquinanti che volgio elaborare con le rispettive sigle
+```console
+ > grep 'SO2\|NO2\|PM10\|PM25' stazioni_qaria_lombardia.csv > stazioni_qaria_lombardia_clean.csv
+```
 
 # 1.1 dati meteo
 I dati relativi alle temperature, all’unidità ed alle precipitazioni sono scaricabili sotto forma di opendata  dal sito della regione lombardia, 
@@ -71,6 +87,7 @@ Con gli identificativi delle stazioni di Milano andiamo a filtrare i dati relati
  cat meteo_2020.csv | sed -n '/^\(14121\|9341\|8149\|5908\|19373\|2006\)/p' > meteo/2020/precipitazioni_2020_mi.csv
  ```
 Questa operazione andrà ripetuta per i dati del 2019 e 2018.
+
 
 # 1.2 Script data_clean_cl.py
 Lo script si esegue nell'ambiente virtuale (qaria) di cui abbiamo il file di requirement nel repository; questo accetta come parametri di ingresso
