@@ -110,6 +110,17 @@ Tutte le operazioni di pulizia e filtraggio dei dati che abbiamo spiegato al pun
 Nel Repo abbiamo caricato dei file evento già prodotti, spacchettare **`temperature.zip e umidita.zip`** e posizionare i file nella stessa cartella dello script.
 Il nome dei file da filtrare e l'anno relativo vengono forniti nel parametro ```console --files_meteo ``` e se ho chiesto allo script di generare avrò come risultato [umidita|temperature|precipitazioni]_nome_file_da_filtrare
 
+# 1.3 Script python analisi_qaria.py
+Questo script mette a confronto le serie storiche dei vari anni, ad esempio
+
+```console
+python analisi_qaria.py --files_qaria "qaria_regione_clean_2020.csv:2020,qaria_regione_clean_2019.csv:2019,qaria_regione_clean_2018.csv:2018" --inquinante SO2
+```
+Dall'help
+```console
+
+```
+
 ## Appendice. RISORSE WEB
 dati meteo
 - https://www.dati.lombardia.it/Ambiente/Dati-sensori-meteo-2020/erjn-istm
