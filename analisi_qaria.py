@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 from datetime import datetime
 import argparse,os
 
-from qarialib import genera_grafici_qaria, genera_file_meteo, misura_similarita_serie_storiche,controlla_files,chk_files
+from qarialib import genera_grafici_qaria, misura_similarita_serie_storiche,controlla_files,chk_files
 
 ### #Client DASK
 ### client = Client(n_workers=2, threads_per_worker=2, processes=False, memory_limit='2GB')
@@ -89,7 +89,7 @@ def main():
                         ,required=True)
     parser.add_argument('--inquinante'
                         ,type=str
-                        ,choices=['PM10','PM25','NO2']
+                        ,choices=['PM10','PM25','NO2','CO_8h','C6H6','O3','SO2']
                         ,help="inquinanti da lavorare"
                         ,default="PM10"
                         ,required=False)
@@ -104,7 +104,7 @@ def main():
     print("dizionario: ",d_files_qaria)
     
     print("Generazione grafici, Media Mobile per smussare la serie\n")
-    genera_grafici_qaria(d_files_qaria,args.inquinante)
+    genera_grafici_qaria(d_files_qaria,args.inquinante,1,",")
 
     
 if __name__ == '__main__':
