@@ -118,7 +118,17 @@ python analisi_qaria.py --files_qaria "qaria_regione_clean_2020.csv:2020,qaria_r
 ```
 Dall'help
 ```console
+usage: analisi_qaria.py [-h] --files_qaria FILES_QARIA
+                        [--inquinante {PM10,PM25,NO2,CO_8h,C6H6,O3,SO2}]
 
+optional arguments:
+  -h, --help            show this help message and exit
+  --files_qaria FILES_QARIA
+                        Inserire lista separata da virgola di
+                        nome_file_meteo:anno_file. Il file dei dati di tutta
+                        la regione
+  --inquinante {PM10,PM25,NO2,CO_8h,C6H6,O3,SO2}
+                        inquinanti da lavorare
 ```
 
 ## Appendice. RISORSE WEB
