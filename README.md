@@ -39,8 +39,8 @@ Nel repository è presente il file requirements.qaria.txt da cui è possibile ri
 ```
 
 
-## 1.Pulizia dei dati
-# 1.0 Pulizia dati regionali della qualità dell'aria
+# 1.Pulizia dei dati
+## 1.0 Pulizia dati regionali della qualità dell'aria
 Il file delle stazioni presentano il nome esteso dell'inquinante, sostituisco il nome con la sigla:
 - 'Biossido di Azoto':'NO2'
 - 'Biossido di Zolfo': 'SO2'
