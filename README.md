@@ -38,8 +38,8 @@ Nel repository è presente il file requirements.qaria.txt da cui è possibile ri
  pip install -r requirements.qaria.txt
 ```
 
-
 # 1.Pulizia dei dati
+
 ## 1.0 Pulizia dati regionali della qualità dell'aria
 Il file delle stazioni presentano il nome esteso dell'inquinante, sostituisco il nome con la sigla per comodità:
 - Biossido di Azoto: NO2 (solo per i dati regionali)
@@ -56,16 +56,14 @@ Ed in fine creo il file csv delle stazioni della regione degli inquinanti che vo
 ```console
  > grep 'SO2\|NO2\|PM10\|PM25' stazioni_qaria_lombardia.csv > stazioni_qaria_lombardia_clean.csv
 ```
-I file all'interno dello zip ```file qaria_regione_clean.zip``` sono i dati regionali degli inquinanti ().
-
+I file all'interno dello zip ```file qaria_regione_clean.zip``` sono i dati regionali degli inquinanti (PM10, PM25, NO2, SO2).
 
 # 1.1 dati meteo
 I dati relativi alle temperature, all’unidità ed alle precipitazioni sono scaricabili sotto forma di opendata  dal sito della regione lombardia, 
-quindi è necessario filtrarli per individuare quelli di Milano.
-Partendo dall’anagrafica delle stazioni (https://www.dati.lombardia.it/Ambiente/Stazioni-Meteorologiche/nf78-nj6b) 
-procediamo a filtrare i record di interesse (ad es. i dati del 2020 sono in https://www.dati.lombardia.it/Ambiente/Dati-sensori-meteo-2020/erjn-istm). 
-I file sono di grandi dimensioni quindi per il momento eviteremo caricamento su database (200Mb zippati, circa 2Gb scompattati)
-o lavorazione tramite strumenti con interfaccia grafica. 
+quindi è necessario filtrarli per individuare quelli dell Provincia d'interesse, inoltre questi file contengono tutti gli eventi meteo quindi un ulteriore filtro è necessario per individuare quelli d'interesse.
+Partendo dall’anagrafica delle stazioni (https://www.dati.lombardia.it/Ambiente/Stazioni-Meteorologiche/nf78-nj6b) procediamo a filtrare i record di interesse (ad es. i dati del 2020 sono in https://www.dati.lombardia.it/Ambiente/Dati-sensori-meteo-2020/erjn-istm). 
+I file sono di grandi dimensioni quindi per il momento eviteremo il caricamento su database (200Mb zippati, circa 2Gb scompattati) o lavorazione tramite strumenti con interfaccia grafica. 
+
 Saranni lavorati con gli strumenti presenti in un terminale Linux.
 i) anagrafica stazioni di rilevamento
 ``` markdown
@@ -76,13 +74,13 @@ oppure singolarmente
  cat Stazioni_Meteorologiche.csv | sed -n '/,Precipitazione,mm/p' | sed -n '/,Milano/p' > stazioni_precipitazioni_MI.csv
  ```
  
-ii) filtrare i dati delle stazioni di rilevamento sulla base degli idSensore filtrati per Milano.
+ii) filtrare i dati delle stazioni di rilevamento sulla base degli idSensore filtrati in precedenza (provincia MI, eventi: temperatura, umidità, precipitazioni).
 Gli idSensore di Milano sono:
 * temperature: 8162,5909,2001,5920,5897,5911
 * umidità: 6179,6597,6174,2002,6185
 * precipitazioni: 	14121,9341,8149,5908,19373,2006
 	
-Con gli identificativi delle stazioni di Milano andiamo a filtrare i dati relativi al 2020
+Con gli identificativi delle stazioni di Milano andiamo a filtrare i valori relativi al 2020 dal file generale (meteo_2020.csv)
 ``` markdown
  cat meteo_2020.csv | sed -n '/^\(8162\|5909\|2001\|5920\|5897\|5911\)/p' > meteo/2020/temperature_2020_mi.csv
  cat meteo_2020.csv | sed -n '/^\(6179\|6597\|6174\|2002\|6185\)/p' > meteo/2020/umidita_2020_mi.csv
@@ -108,12 +106,14 @@ optional arguments:
   --genera {0,1}        se devo generare il file evento da quello al parametro
                         --files_meteo[1], se ho gia' prodotto i file[0]
 ```
-Tutte le operazioni di pulizia e filtraggio dei dati che abbiamo spiegato al punto precedente le abbiamo implementate nello script, chiamando la linea di comando linux con il modulo subprocess di python e reindirizzato l'output verso file. Con l'opzione ```console --genera 1 ``` andiamo ad eseguire questo lavoro; qualora avessimo già prodotto i file per l'evento meteo in lavorazione possiamo fornire ```console --genera 0 ``` ed indicare in ```console files_meteo``` la lista dei files dell'evento. Esempio partendo dal file generale (https://www.dati.lombardia.it/Ambiente/Dati-sensori-meteo-2020/erjn-istm):
+Tutte le operazioni di pulizia e filtraggio dei dati che abbiamo spiegato al punto precedente (tranne il recupero degli idSensore) le abbiamo implementate nello script, chiamando la linea di comando linux con il modulo subprocess di python con reindirizzamento dell'output verso file. 
+Con l'opzione ```console --genera 1 ``` andiamo ad eseguire questo lavoro; qualora avessimo già prodotto i file per l'evento meteo in lavorazione possiamo fornire ```console --genera 0 ``` ed indicare in ```console files_meteo``` la lista dei files dell'evento già prodotti in precedenza. 
+Ad esempio, partendo dal file generale (https://www.dati.lombardia.it/Ambiente/Dati-sensori-meteo-2020/erjn-istm):
 ```console
 python data_clean_cl.py --files_meteo "file_meteo_generale.csv:2020,..." --evento umidita --genera 1
 ```
-quindi sto dicendo allo script di compiere l'analisi dell'evento umidita partendo dal file generale.
-Se per qualche motivo abbiamo già compiuto questo passo e volgiamo ripeterlo, avremo già prodotto i file dell'evento 
+sto dicendo allo script di compiere l'analisi dell'evento umidita partendo dal file generale.
+Se per qualche motivo abbiamo già compiuto questo passo e vogliamo ripeterlo, avremo già prodotto i file dell'evento 
 `umidita_meteo_2020.csv,umidita_meteo_2019.csv,umidita_meteo_2018.csv` quindi eseguiremo con la lista dei file già prodotti e senza generare:
 
 ```console
