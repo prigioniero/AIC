@@ -1,6 +1,6 @@
 ## 0.Preparazione ambiente
 
-per eseguire l’analisi abbiamo bisogno dei moduli pandas e numpy, per non creare conflitti con altre versioni di Python ed altri moduli installati installo 
+Per eseguire l’analisi abbiamo bisogno dei moduli pandas e numpy, per non creare conflitti con altre versioni di Python ed altri moduli installati verrà creata 
 una virtualenv per isolare il nostro ambiente; se virtualenv non è presente installarla prima:
 ``` markdown
  sudo apt install python3-virtualenv
@@ -14,7 +14,7 @@ attiviamola:
 ``` markdown
  . qaria/bin/activate
  ```
-il nostro ambiente è attivo e la linea di comando la mostra:
+Il nostro ambiente è attivo e la linea di comando la mostra:
 (qaria) silvio@LAPTOP-1E60R3SA:/mnt/home/py$
 
 da questo momento in poi tutto quello che installiamo sarà all’interno di questo ambiente.
@@ -27,7 +27,7 @@ Per i grafici
 ``` markdown
  pip install matplotlib
  ```
-Per la decomposizione delle serie storiche
+Per la decomposizione delle serie storiche (se necessaria)
 ``` markdown
  pip install statsmodels
 ```
@@ -41,11 +41,11 @@ Nel repository è presente il file requirements.qaria.txt da cui è possibile ri
 
 # 1.Pulizia dei dati
 ## 1.0 Pulizia dati regionali della qualità dell'aria
-Il file delle stazioni presentano il nome esteso dell'inquinante, sostituisco il nome con la sigla:
-- 'Biossido di Azoto':'NO2'
-- 'Biossido di Zolfo': 'SO2'
-- 'PM10 (SM2005)':'PM10'
-- 'Particelle sospese PM2.5':'PM25'
+Il file delle stazioni presentano il nome esteso dell'inquinante, sostituisco il nome con la sigla per comodità:
+- Biossido di Azoto: NO2 (solo per i dati regionali)
+- Biossido di Zolfo: SO2
+- PM10 (SM2005): PM10
+- Particelle sospese PM2.5: PM25
 ``` console
  > sed -i 's/Biossido di Azoto/NO2/g' stazioni_qaria_lombardia.csv
  > sed -i 's/Biossido di Zolfo/SO2/g' stazioni_qaria_lombardia.csv
@@ -56,6 +56,8 @@ Ed in fine creo il file csv delle stazioni della regione degli inquinanti che vo
 ```console
  > grep 'SO2\|NO2\|PM10\|PM25' stazioni_qaria_lombardia.csv > stazioni_qaria_lombardia_clean.csv
 ```
+I file all'interno dello zip ```file qaria_regione_clean.zip``` sono i dati regionali degli inquinanti ().
+
 
 # 1.1 dati meteo
 I dati relativi alle temperature, all’unidità ed alle precipitazioni sono scaricabili sotto forma di opendata  dal sito della regione lombardia, 
@@ -106,9 +108,21 @@ optional arguments:
   --genera {0,1}        se devo generare il file evento da quello al parametro
                         --files_meteo[1], se ho gia' prodotto i file[0]
 ```
-Tutte le operazioni di pulizia e filtraggio dei dati che abbiamo spiegato al punto precedente le abbiamo implementate nello script, chiamando la linea di comando linux con il modulo subprocess di python e reindirizzato l'output verso file. Con l'opzione ```console --genera 1 ``` andiamo ad eseguire questo lavoro; qualora avessimo già prodotto i file per l'evento meteo in lavorazione possiamo fornire ```console --genera 1 ```.
+Tutte le operazioni di pulizia e filtraggio dei dati che abbiamo spiegato al punto precedente le abbiamo implementate nello script, chiamando la linea di comando linux con il modulo subprocess di python e reindirizzato l'output verso file. Con l'opzione ```console --genera 1 ``` andiamo ad eseguire questo lavoro; qualora avessimo già prodotto i file per l'evento meteo in lavorazione possiamo fornire ```console --genera 0 ``` ed indicare in ```console files_meteo``` la lista dei files dell'evento. Esempio partendo dal file generale (https://www.dati.lombardia.it/Ambiente/Dati-sensori-meteo-2020/erjn-istm):
+```console
+python data_clean_cl.py --files_meteo "file_meteo_generale.csv:2020,..." --evento umidita --genera 1
+```
+quindi sto dicendo allo script di compiere l'analisi dell'evento umidita partendo dal file generale.
+Se per qualche motivo abbiamo già compiuto questo passo e volgiamo ripeterlo, avremo già prodotto i file dell'evento 
+`umidita_meteo_2020.csv,umidita_meteo_2019.csv,umidita_meteo_2018.csv` quindi eseguiremo con la lista dei file già prodotti e senza generare:
+
+```console
+python data_clean_cl.py --files_meteo "umidita_meteo_2020.csv:2020,umidita_meteo_2019.csv:2019..." --evento umidita --genera 0
+```
+
 Nel Repo abbiamo caricato dei file evento già prodotti, spacchettare **`temperature.zip e umidita.zip`** e posizionare i file nella stessa cartella dello script.
-Il nome dei file da filtrare e l'anno relativo vengono forniti nel parametro ```console --files_meteo ``` e se ho chiesto allo script di generare avrò come risultato [umidita|temperature|precipitazioni]_nome_file_da_filtrare
+Il nome dei file da filtrare e l'anno relativo vengono forniti nel parametro ```console --files_meteo ``` e se ho chiesto allo script di generare avrò come risultato [umidita|temperature|precipitazioni]_nome_file_meteo
+Il file da cui siamo partiti ed  abbiamo filtrato contiene tutti gli eventi meteorologici con granularità al minuto, ha una dimensione di circa 2GB quindi per comodità abbiamo caricato il risultato finale 
 
 ## 2.Analisi delle Qualità dell'aria
 # 2.0  
