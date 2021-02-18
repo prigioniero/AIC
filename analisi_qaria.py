@@ -93,6 +93,16 @@ def main():
                         ,help="inquinanti da lavorare"
                         ,default="PM10"
                         ,required=False)
+    parser.add_argument('--sep_csv'
+                        ,type=str
+                        ,help="inserire separatore dei file csv in input"
+                        ,default=","
+                        ,required=False)
+    parser.add_argument('--skip_riga'
+                        ,type=int
+                        ,help="Inserire 1 se il file ha intestazione"
+                        ,default=1
+                        ,required=False)
     
     args = parser.parse_args()
     l_anni = [a.split(":")[1] for a in args.files_qaria.split(',')]
@@ -104,7 +114,7 @@ def main():
     print("dizionario: ",d_files_qaria)
     
     print("Generazione grafici, Media Mobile per smussare la serie\n")
-    genera_grafici_qaria(d_files_qaria,args.inquinante,1,",")
+    genera_grafici_qaria(d_files_qaria,args.inquinante,1,args.sep_csv)
 
     
 if __name__ == '__main__':
