@@ -110,7 +110,9 @@ Tutte le operazioni di pulizia e filtraggio dei dati che abbiamo spiegato al pun
 Nel Repo abbiamo caricato dei file evento già prodotti, spacchettare **`temperature.zip e umidita.zip`** e posizionare i file nella stessa cartella dello script.
 Il nome dei file da filtrare e l'anno relativo vengono forniti nel parametro ```console --files_meteo ``` e se ho chiesto allo script di generare avrò come risultato [umidita|temperature|precipitazioni]_nome_file_da_filtrare
 
-# 1.3 Script python analisi_qaria.py
+## 2.Analisi delle Qualità dell'aria
+# 2.0  
+# 2.1 Script python analisi_qaria.py
 Questo script mette a confronto le serie storiche dei vari anni, ad esempio
 
 ```console
