@@ -135,6 +135,7 @@ Dall'help
 ```console
 usage: analisi_qaria.py [-h] --files_qaria FILES_QARIA
                         [--inquinante {PM10,PM25,NO2,CO_8h,C6H6,O3,SO2}]
+                        [--sep_csv SEP_CSV] [--skip_riga SKIP_RIGA]
 
 optional arguments:
   -h, --help            show this help message and exit
@@ -144,6 +145,9 @@ optional arguments:
                         la regione
   --inquinante {PM10,PM25,NO2,CO_8h,C6H6,O3,SO2}
                         inquinanti da lavorare
+  --sep_csv SEP_CSV     inserire separatore dei file csv in input
+  --skip_riga SKIP_RIGA
+                        Inserire 1 se il file ha intestazione
 ```
 # 2.2 Attenzione
 ## Appendice. RISORSE WEB
