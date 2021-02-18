@@ -120,9 +120,8 @@ Se per qualche motivo abbiamo già compiuto questo passo e volgiamo ripeterlo, a
 python data_clean_cl.py --files_meteo "umidita_meteo_2020.csv:2020,umidita_meteo_2019.csv:2019..." --evento umidita --genera 0
 ```
 
-Nel Repo abbiamo caricato dei file evento già prodotti, spacchettare **`temperature.zip e umidita.zip`** e posizionare i file nella stessa cartella dello script.
-Il nome dei file da filtrare e l'anno relativo vengono forniti nel parametro ```console --files_meteo ``` e se ho chiesto allo script di generare avrò come risultato [umidita|temperature|precipitazioni]_nome_file_meteo
-Il file da cui siamo partiti ed  abbiamo filtrato contiene tutti gli eventi meteorologici con granularità al minuto, ha una dimensione di circa 2GB quindi per comodità abbiamo caricato il risultato finale 
+Nel Repo abbiamo caricato dei file evento già prodotti (i file generali sono di circa 2GB), spacchettare **`temperature.zip e umidita.zip`** e posizionare i file nella stessa cartella dello script.
+Il nome dei file da lavorare e l'anno relativo vengono forniti nel parametro ```console --files_meteo ``` e visto che abbiamo già i file evento prodotti forniamo 0 come parametro genera.
 
 ## 2.Analisi delle Qualità dell'aria
 # 2.0  
