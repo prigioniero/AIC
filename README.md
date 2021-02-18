@@ -123,7 +123,7 @@ python data_clean_cl.py --files_meteo "umidita_meteo_2020.csv:2020,umidita_meteo
 Nel Repo abbiamo caricato dei file evento già prodotti (i file generali sono di circa 2GB), spacchettare **`temperature.zip e umidita.zip`** e posizionare i file nella stessa cartella dello script.
 Il nome dei file da lavorare e l'anno relativo vengono forniti nel parametro ```console --files_meteo ``` e visto che abbiamo già i file evento prodotti forniamo 0 come parametro genera.
 
-## 2.Analisi delle Qualità dell'aria
+# 2.Analisi delle Qualità dell'aria
 # 2.0  
 # 2.1 Script python analisi_qaria.py
 Questo script mette a confronto le serie storiche dei vari anni, ad esempio
