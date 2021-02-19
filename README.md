@@ -27,9 +27,10 @@ Per i grafici
 ``` markdown
  pip install matplotlib
  ```
-Per la decomposizione delle serie storiche (se necessaria)
+Per la decomposizione delle serie storiche (se necessaria) e misure di similitudine 
 ``` markdown
  pip install statsmodels
+ pip install similaritymeasures
 ```
 
 # 0.1 Istallazione ambiente dal file requirements.qaria.txt
