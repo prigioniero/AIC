@@ -50,6 +50,7 @@ packaging==20.9
 pandas==1.1.5
 parso==0.8.1
 partd==1.1.0
+patsy==0.5.1
 pexpect==4.8.0
 pickleshare==0.7.5
 Pillow==8.1.0
@@ -88,6 +89,7 @@ sphinxcontrib-htmlhelp==1.0.3
 sphinxcontrib-jsmath==1.0.1
 sphinxcontrib-qthelp==1.0.3
 sphinxcontrib-serializinghtml==1.1.4
+statsmodels==0.12.2
 tblib==1.7.0
 threadpoolctl==2.1.0
 toml==0.10.2
