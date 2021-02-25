@@ -13,7 +13,7 @@ from qarialib import custom_date_parser
 
 # importo dizionari e liste da config.py
 from config import colore,stile,tracciato_qaria
-from config import nome_colonna_data,nome_colonna_valore
+from config import nome_colonna_data,nome_colonna_valore,skip_qaria,sep_qaria
 ### #Client DASK
 ### client = Client(n_workers=2, threads_per_worker=2, processes=False, memory_limit='2GB')    
 
@@ -35,12 +35,12 @@ def main():
     parser.add_argument('--sep_csv'
                         ,type=str
                         ,help="inserire separatore dei file csv in input"
-                        ,default=","
+                        ,default=sep_qaria
                         ,required=False)
     parser.add_argument('--skip_riga'
                         ,type=int
                         ,help="Inserire 1 se il file ha intestazione"
-                        ,default=1
+                        ,default=skip_qaria
                         ,required=False)
     #tracciato_qaria=['stazione_id','data','inquinante','valore']
     ###parser.add_argument('--tracciato_qaria'

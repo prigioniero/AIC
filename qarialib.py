@@ -7,24 +7,11 @@ import matplotlib.pyplot as plt
 from datetime import datetime
 import argparse,os,re,subprocess
 import ast
-from config import colore,stile,tracciato_qaria
+from config import colore,stile,tracciato_qaria,tracciato_meteo
 
 custom_date_parser = lambda x: datetime.strptime(x, "%d/%m/%Y %H:%M:%S")
 custom_date_parser_qaria = lambda x: datetime.strptime(x, "%Y/%m/%d")
 str_to_dict = lambda x: ast.literal_eval(x)
-
-###d_stazioni = {
-###    'temperature': [8162,5909,2001,5920,5897,5911],
-###    'umidita': [6179,6597,6174,2002,6185],
-###    'precipitazioni': [14121,9341,8149,5908,19373,2006]
-###}
-
-#colore = {0:'green',1:'red',2:'blue',3:'yellow',4:'black'}
-#stile = {
-#    0:'solid',1:'dashed', 2:'dashdot', 3:'dotted',4:'solid'
-#}
-#tracciato_meteo=['IdSensore','Data','Valore','Stato','idOperatore']
-#tracciato_qaria=['stazione_id','data','inquinante','valore']
 
 
 ##########################
@@ -44,13 +31,13 @@ def controlla_files(l_file):
 
 #######################
 
-###################################
-def genera_grafici_meteo(d_file_evento):
+################################### ,evento,skip,sep,cdata,cvalore
+def genera_grafici_meteo(d_file_evento,skip,sep,cdata,cvalore):
     d_grafici={}
     l_df_evento=[]
     for anno,file_evento in d_file_evento.items():
-        
-        evento=pd.read_csv(file_evento,parse_dates=["Data"],date_parser=custom_date_parser,header=None,names=tracciato_meteo)
+        #qaria=pd.read_csv(file_qaria,parse_dates=[cdata],header=None,names=tracciato_qaria,sep=sep,skiprows=skip)
+        evento=pd.read_csv(file_evento,parse_dates=["Data"],date_parser=custom_date_parser,header=None,names=tracciato_meteo,sep=sep,skiprows=skip)
         
         # lasso di tempo che comprende la quarantena
         lock_d = (evento['Data'] > '%s-02-01'%str(anno)) & (evento['Data'] < '%s-05-01'%str(anno))
@@ -74,8 +61,7 @@ def genera_grafici_meteo(d_file_evento):
         d_grafici[file_evento]=ts_evento_roll_mean
         
         l_df_evento.append(ts_evento_roll_mean)
-        ### ts_evento.plot()
-        ### ts_evento_roll_mean.plot(color=colore[n],label=file_evento)
+        
     all_df=pd.concat(l_df_evento,axis=1);
     all_df=all_df.dropna()
     

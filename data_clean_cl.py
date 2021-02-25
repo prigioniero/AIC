@@ -12,35 +12,11 @@ from itertools import product
 import subprocess,re
 from random import randrange
 from qarialib import genera_grafici_meteo, genera_file_meteo, misura_similarita_serie_storiche,controlla_files,chk_files
-from config import d_stazioni
+from config import d_stazioni,d_stazioni_lombardia,nome_colonna_data_meteo,nome_colonna_valore_meteo,sep_meteo,skip_meteo
+
 ### #Client DASK
 ### client = Client(n_workers=2, threads_per_worker=2, processes=False, memory_limit='2GB')
 
-###d_stazioni = {
-###    'temperature': [8162,5909,2001,5920,5897,5911],
-###    'umidita': [6179,6597,6174,2002,6185],
-###    'precipitazioni': [14121,9341,8149,5908,19373,2006]
-###}
-
-########################
-### def misura_similarita_serie_storiche
-########################
-
-##############################
-### def genera_grafici_meteo
-##############################
-
-##############################
-### def genera_file_meteo
-##############################
-
-###########################
-### def controlla_files(l_file):
-##############################
-
-#######################
-### def chk_files_meteo
-########################
 
 def main():
     print("main\n")
@@ -59,6 +35,28 @@ def main():
                         ,type=int
                         ,choices=[0,1]
                         ,help="se devo generare il file evento da quello al parametro --files_meteo[1], se ho gia' prodotto i file[0]",required=True)
+    
+    
+    parser.add_argument('--sep_csv'
+                        ,type=str
+                        ,help="inserire separatore dei file csv in input"
+                        ,default=sep_meteo
+                        ,required=False)
+    parser.add_argument('--skip_riga'
+                        ,type=int
+                        ,help="Inserire 1 se il file ha intestazione"
+                        ,default=skip_meteo
+                        ,required=False)
+    parser.add_argument('--colonna_data'
+                        ,type=str
+                        ,help="Inserire nome della colonna contenente la data della serie storica"
+                        ,default=nome_colonna_data_meteo
+                        ,required=False)
+    parser.add_argument('--colonna_valore'
+                        ,type=str
+                        ,help="Inserire nome della colonna contenente il valore della serie storica"
+                        ,default=nome_colonna_valore_meteo
+                        ,required=False)
     
     args = parser.parse_args()
     l_anni = [a.split(":")[1] for a in args.files_meteo.split(',')]
@@ -81,7 +79,7 @@ def main():
         for f,anno in d_files_meteo.items():
             print("produco %s anno %s"%(f,anno))
             ### l_file_evento.append( genera_file_meteo(f,d_stazioni[args.evento],args.evento,anno))
-            d_file_evento[anno]=genera_file_meteo(f,d_stazioni[args.evento],args.evento,anno)
+            d_file_evento[anno]=genera_file_meteo(f,d_stazioni_lombardia[args.evento],args.evento,anno)
         
         ### if (file_precipi or file_temper or file_umidit):
         if all([f for f in d_file_evento.values()]):
@@ -96,7 +94,8 @@ def main():
     d_file_evento={'2020':'%s_meteo_2020.csv'%args.evento
                    ,'2019':'%s_meteo_2019.csv'%args.evento
                    ,'2018':'%s_meteo_2018.csv'%args.evento}
-    genera_grafici_meteo(d_file_evento)
+    
+    genera_grafici_meteo(d_file_evento=d_file_evento,skip=0,sep=",",cdata="Data",cvalore="Valore")
 
     
 if __name__ == '__main__':
