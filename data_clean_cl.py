@@ -12,15 +12,15 @@ from itertools import product
 import subprocess,re
 from random import randrange
 from qarialib import genera_grafici_meteo, genera_file_meteo, misura_similarita_serie_storiche,controlla_files,chk_files
-
+from config import d_stazioni
 ### #Client DASK
 ### client = Client(n_workers=2, threads_per_worker=2, processes=False, memory_limit='2GB')
 
-d_stazioni = {
-    'temperature': [8162,5909,2001,5920,5897,5911],
-    'umidita': [6179,6597,6174,2002,6185],
-    'precipitazioni': [14121,9341,8149,5908,19373,2006]
-}
+###d_stazioni = {
+###    'temperature': [8162,5909,2001,5920,5897,5911],
+###    'umidita': [6179,6597,6174,2002,6185],
+###    'precipitazioni': [14121,9341,8149,5908,19373,2006]
+###}
 
 ########################
 ### def misura_similarita_serie_storiche
