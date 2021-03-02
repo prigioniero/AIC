@@ -1,0 +1,24 @@
+-- comandi con file meteo generati
+python data_clean_cl.py --files_meteo "umidita_meteo_2020.csv:2020,umidita_meteo_2019.csv:2019,umidita_meteo_2018.csv:2018" --evento umidita --genera 0
+
+-- comandi per generare file meteo
+python data_clean_cl.py --files_meteo "meteo_2020.csv:2020,meteo_2019.csv:2019,meteo_2018.csv:2018" --evento umidita --genera 1
+
+
+-- estrazione id stazione da file meteo
+
+---dal file delle stazioni della lombardia estraggo solo gli eventi di interesse
+--- Temperatura Precipitazioni Umidita
+awk '/Umidit/ || /Temperatura/ || /Precipitazione/' stazioni_meteo_lombardia.csv > stazioni_meteo_lombardia_temp.umidit.pre.csv
+
+
+grep Umidit stazioni_meteo_lombardia_temp.umidit.pre.csv | cut -d',' -f1 > id_stazioni_umidita_lombardia.csv
+
+grep Temperatura stazioni_meteo_lombardia_temp.umidit.pre.csv | cut -d',' -f1 > id_stazioni_temperatura_lombardia.csv
+
+grep Precipitazione stazioni_meteo_lombardia_temp.umidit.pre.csv | cut -d',' -f1 > id_stazioni_precipitazione_lombardia.csv
+
+
+
+--qaria
+python analisi_qaria.py --files_qaria "qaria_regione_clean_2020.csv:2020,qaria_regione_clean_2019.csv:2019,qaria_regione_clean_2018.csv:2018" --inquinante PM10 --sep_csv , --skip_riga 1 --colonna_data data --colonna_valore valore
